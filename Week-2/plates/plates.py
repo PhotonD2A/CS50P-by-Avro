@@ -8,36 +8,28 @@ def main():
 
 
 def is_valid(s):
-    length = len(s)
-
-    if length >= 2 and length <= 6:
-        for letters in s:
-            if not s.isalnum():
-                break
-
-            if s[0:2].isalpha():
-                middle = s[1:-1]
-                if middle.isnumeric() and middle.find(0):
-                    break
-
-                zeroIndex = s.find("0") - 1
-
-                if s[-(zeroIndex)].isdigit():
-                    for x in s:
-                        if x.isdigit():
-                            if x.startswith('0'):
-                                return False
-                            else:
-                                return True
-
-                if s[-2].isdigit() and s[-1].isalpha():
-                    break
-                elif s[-2].isdigit():
-                    return True
-                elif s.isalpha():
-                    return True
-
-    else:
+    # Check length
+    if not (2 <= len(s) <= 6):
         return False
 
-main()
+    # Check if all characters are alphanumeric
+    if not s.isalnum():
+        return False
+
+    # Check if the first two characters are letters
+    if not s[0:2].isalpha():
+        return False
+
+    # Check if numbers are at the end and the first number is not '0'
+    for i in range(len(s)):
+        if s[i].isdigit():
+            if s[i] == '0' and i == 2:
+                return False
+            if not s[i:].isdigit():
+                return False
+            break
+
+    return True
+
+if __name__ == "__main__":
+    main()
