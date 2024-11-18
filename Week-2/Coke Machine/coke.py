@@ -1,22 +1,18 @@
-print("Amount due: 50")
+def main():
+    amount_due = 50
+    print(f"Amount due: {amount_due}")
 
-changeOwed = 50
+    while amount_due > 0:
+        coin = int(input("Insert coin: "))
 
+        if coin in [25, 10, 5]:
+            amount_due -= coin
+            if amount_due > 0:
+                print(f"Amount due: {amount_due}")
+        else:
+            print(f"Amount due: {amount_due}")
 
-while changeOwed > 0:
-    coins = int(input("Insert coins: "))
+    print(f"Change owed: {abs(amount_due)}")
 
-    if coins < 0:
-        print("Amount due: 50")
-
-    if coins == 25 or coins == 10 or coins == 5:
-        changeOwed -= coins
-        if changeOwed <= 0:
-            break
-            print(0)
-        print("Change owed: " + str(changeOwed))
-    else:
-        print(50)
-
-#return absolute value returned
-print("Change owed: " + str(abs(changeOwed)))
+if __name__ == "__main__":
+    main()
